@@ -46,7 +46,7 @@
         "memoryLimit": 1610612736,
         "website": "https://rotem-projects.co.il",
         "contactEmail": "rotem-project@maxd.pro",
-        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
+        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png",
         "tags": [
           "directus",
           "laravel",
@@ -61,7 +61,7 @@
         "postInstallMessage": "## First login\n\n1. Open the app URL — **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio → `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then restart.",
         "minBoxVersion": "10.0.0",
         "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.3",
-        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png",
         "packagerName": "Rotem Projects",
         "packagerUrl": "https://rotem-projects.co.il",
         "packageUrl": "https://mambo-heading-documentary-database.trycloudflare.com/CloudronVersions.json"
@@ -116,7 +116,7 @@
         "memoryLimit": 1610612736,
         "website": "https://rotem-projects.co.il",
         "contactEmail": "rotem-project@maxd.pro",
-        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
+        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png",
         "tags": [
           "directus",
           "laravel",
@@ -131,7 +131,7 @@
         "postInstallMessage": "## First login\n\n1. Open the app URL — **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio → `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then restart.",
         "minBoxVersion": "10.0.0",
         "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.6",
-        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png",
         "packagerName": "Rotem Projects",
         "packagerUrl": "https://rotem-projects.co.il",
         "packageUrl": "https://mambo-heading-documentary-database.trycloudflare.com/CloudronVersions.json"
@@ -186,7 +186,7 @@
         "memoryLimit": 1610612736,
         "website": "https://rotem-projects.co.il",
         "contactEmail": "rotem-project@maxd.pro",
-        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
+        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png",
         "tags": [
           "directus",
           "laravel",
@@ -201,7 +201,7 @@
         "postInstallMessage": "## First login\n\n1. Open the app URL — **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio → `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then restart.",
         "minBoxVersion": "10.0.0",
         "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.6",
-        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png",
         "packagerName": "Rotem Projects",
         "packagerUrl": "https://rotem-projects.co.il",
         "packageUrl": "https://mambo-heading-documentary-database.trycloudflare.com/CloudronVersions.json"
