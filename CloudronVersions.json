@@ -6,7 +6,7 @@
         "id": "co.rotem-projects.full",
         "title": "Rotem Projects Full",
         "author": "Rotem Projects",
-        "description": "# Rotem Projects Full\n\nHebrew/RTL Vue 3 admin console **plus** Directus **11.17.4** **plus** a Laravel Directus-compatible API in one Cloudron app.\n\n- **Admin UI** (SPA) at `/` \u2014 Directus URL locked to this origin; optional Laravel provider uses `/api`.\n- **Directus Studio** at `/admin/`.\n- **Directus API** on the same host (`/auth`, `/items`, `/assets`, \u2026).\n- **Laravel API** at `/api/*` (schema `laravel` in the same PostgreSQL database).\n- PostgreSQL + Redis + mail + optional Cloudron SSO.\n- Invoice-related Directus extensions are bundled.\n\nPinned Directus version: **11.17.4** (matches production).",
+        "description": "# Rotem Projects Full\n\nHebrew/RTL Vue 3 admin console **plus** Directus **11.17.4** **plus** a Laravel Directus-compatible API in one Cloudron app.\n\n- **Admin UI** (SPA) at `/` — Directus URL locked to this origin; optional Laravel provider uses `/api`.\n- **Directus Studio** at `/admin/`.\n- **Directus API** on the same host (`/auth`, `/items`, `/assets`, …).\n- **Laravel API** at `/api/*` (schema `laravel` in the same PostgreSQL database).\n- PostgreSQL + Redis + mail + optional Cloudron SSO.\n- Invoice-related Directus extensions are bundled.\n\nPinned Directus version: **11.17.4** (matches production).",
         "changelog": "## 0.2.3\n\n- nginx client/proxy temp paths under `/tmp/nginx` for read-only Cloudron root.\n- Bundle `/app/lib`, full `invoice-pdf-download/runtime`, and `/src` helpers for app-guide-ai.\n- Skip `artisan storage:link` (nginx aliases `/storage/`).\n\n## 0.2.2\n\n- Fix Directus bootstrap: ship `@napi-rs/snappy-linux-x64-gnu` (linux/amd64 image).\n\n## 0.2.1\n\n- Fix crash loop: bake `run-directus.sh` into the image (Cloudron `/app/pkg` is read-only at runtime).\n- Skip runtime `.env` symlink under read-only `/app/code`.\n\n## 0.2.0\n\n- First **Laravel + Directus 11.17.4 + Vue SPA** Cloudron package.\n- Based on `main` @ SPA `369a2ca` and Directus pin from `dev/directus`.\n- SPA `DEPLOY_TARGET=cloudron` locks Directus to same origin; Laravel switcher stays available.",
         "tagline": "Vue SPA + Directus 11.17.4 + Laravel API",
         "version": "0.2.3",
@@ -38,7 +38,7 @@
             "message": "Apply Rotem invoice schema (Bundle/Sync or compare-prod) after first Directus login"
           },
           "laravel-optional": {
-            "message": "Laravel compat API is at /api \u2014 switch provider on the login screen if needed"
+            "message": "Laravel compat API is at /api — switch provider on the login screen if needed"
           }
         },
         "optionalSso": true,
@@ -46,7 +46,7 @@
         "memoryLimit": 1610612736,
         "website": "https://rotem-projects.co.il",
         "contactEmail": "rotem-project@maxd.pro",
-        "icon": "https://mambo-heading-documentary-database.trycloudflare.com/cloudron/logo.png",
+        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
         "tags": [
           "directus",
           "laravel",
@@ -58,10 +58,10 @@
         "mediaLinks": [
           "https://mambo-heading-documentary-database.trycloudflare.com/cloudron/logo.png"
         ],
-        "postInstallMessage": "## First login\n\n1. Open the app URL \u2014 **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio \u2192 `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then restart.",
+        "postInstallMessage": "## First login\n\n1. Open the app URL — **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio → `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then restart.",
         "minBoxVersion": "10.0.0",
         "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.3",
-        "iconUrl": "https://mambo-heading-documentary-database.trycloudflare.com/cloudron/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
         "packagerName": "Rotem Projects",
         "packagerUrl": "https://rotem-projects.co.il",
         "packageUrl": "https://mambo-heading-documentary-database.trycloudflare.com/CloudronVersions.json"
@@ -76,7 +76,7 @@
         "id": "co.rotem-projects.full",
         "title": "Rotem Projects Full",
         "author": "Rotem Projects",
-        "description": "# Rotem Projects Full\n\nHebrew/RTL Vue 3 admin console **plus** Directus **11.17.4** **plus** a Laravel Directus-compatible API in one Cloudron app.\n\n- **Admin UI** (SPA) at `/` \u2014 Directus URL locked to this origin; optional Laravel provider uses `/api`.\n- **Directus Studio** at `/admin/`.\n- **Directus API** on the same host (`/auth`, `/items`, `/assets`, \u2026).\n- **Laravel API** at `/api/*` (schema `laravel` in the same PostgreSQL database).\n- PostgreSQL + Redis + mail + optional Cloudron SSO.\n- Invoice-related Directus extensions are bundled.\n\nPinned Directus version: **11.17.4** (matches production).",
+        "description": "# Rotem Projects Full\n\nHebrew/RTL Vue 3 admin console **plus** Directus **11.17.4** **plus** a Laravel Directus-compatible API in one Cloudron app.\n\n- **Admin UI** (SPA) at `/` — Directus URL locked to this origin; optional Laravel provider uses `/api`.\n- **Directus Studio** at `/admin/`.\n- **Directus API** on the same host (`/auth`, `/items`, `/assets`, …).\n- **Laravel API** at `/api/*` (schema `laravel` in the same PostgreSQL database).\n- PostgreSQL + Redis + mail + optional Cloudron SSO.\n- Invoice-related Directus extensions are bundled.\n\nPinned Directus version: **11.17.4** (matches production).",
         "changelog": "## 0.2.6\n\n- nginx: serve SPA `/assets/index-*` from static files before proxying Directus `/assets/<uuid>` (fixes blank Vue app on same-origin Cloudron).\n\n## 0.2.3\n\n- nginx client/proxy temp paths under `/tmp/nginx` for read-only Cloudron root.\n- Bundle `/app/lib`, full `invoice-pdf-download/runtime`, and `/src` helpers for app-guide-ai.\n- Skip `artisan storage:link` (nginx aliases `/storage/`).\n\n## 0.2.2\n\n- Fix Directus bootstrap: ship `@napi-rs/snappy-linux-x64-gnu` (linux/amd64 image).\n\n## 0.2.1\n\n- Fix crash loop: bake `run-directus.sh` into the image (Cloudron `/app/pkg` is read-only at runtime).\n- Skip runtime `.env` symlink under read-only `/app/code`.\n\n## 0.2.0\n\n- First **Laravel + Directus 11.17.4 + Vue SPA** Cloudron package.\n- Based on `main` @ SPA `369a2ca` and Directus pin from `dev/directus`.\n- SPA `DEPLOY_TARGET=cloudron` locks Directus to same origin; Laravel switcher stays available.",
         "tagline": "Vue SPA + Directus 11.17.4 + Laravel API",
         "version": "0.2.6",
@@ -108,7 +108,7 @@
             "message": "Apply Rotem invoice schema (Bundle/Sync or compare-prod) after first Directus login"
           },
           "laravel-optional": {
-            "message": "Laravel compat API is at /api \u2014 switch provider on the login screen if needed"
+            "message": "Laravel compat API is at /api — switch provider on the login screen if needed"
           }
         },
         "optionalSso": true,
@@ -116,7 +116,7 @@
         "memoryLimit": 1610612736,
         "website": "https://rotem-projects.co.il",
         "contactEmail": "rotem-project@maxd.pro",
-        "icon": "https://mambo-heading-documentary-database.trycloudflare.com/cloudron/logo.png",
+        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
         "tags": [
           "directus",
           "laravel",
@@ -128,16 +128,86 @@
         "mediaLinks": [
           "https://mambo-heading-documentary-database.trycloudflare.com/cloudron/logo.png"
         ],
-        "postInstallMessage": "## First login\n\n1. Open the app URL \u2014 **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio \u2192 `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then restart.",
+        "postInstallMessage": "## First login\n\n1. Open the app URL — **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio → `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then restart.",
         "minBoxVersion": "10.0.0",
         "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.6",
-        "iconUrl": "https://mambo-heading-documentary-database.trycloudflare.com/cloudron/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
         "packagerName": "Rotem Projects",
         "packagerUrl": "https://rotem-projects.co.il",
         "packageUrl": "https://mambo-heading-documentary-database.trycloudflare.com/CloudronVersions.json"
       },
       "creationDate": "Tue, 06 Oct 2026 09:47:46 GMT",
       "ts": "Tue, 06 Oct 2026 09:47:46 GMT",
+      "publishState": "published",
+      "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.6"
+    },
+    "0.2.7": {
+      "manifest": {
+        "id": "co.rotem-projects.full",
+        "title": "Rotem Projects Full",
+        "author": "Rotem Projects",
+        "description": "# Rotem Projects Full\n\nHebrew/RTL Vue 3 admin console **plus** Directus **11.17.4** **plus** a Laravel Directus-compatible API in one Cloudron app.\n\n- **Admin UI** (SPA) at `/` — Directus URL locked to this origin; optional Laravel provider uses `/api`.\n- **Directus Studio** at `/admin/`.\n- **Directus API** on the same host (`/auth`, `/items`, `/assets`, …).\n- **Laravel API** at `/api/*` (schema `laravel` in the same PostgreSQL database).\n- PostgreSQL + Redis + mail + optional Cloudron SSO.\n- Invoice-related Directus extensions are bundled.\n\nPinned Directus version: **11.17.4** (matches production).",
+        "changelog": "Same image as 0.2.6; fixes catalog icon URL (update failed on dead tunnel icon).",
+        "tagline": "Vue SPA + Directus 11.17.4 + Laravel API",
+        "version": "0.2.7",
+        "upstreamVersion": "11.17.4",
+        "healthCheckPath": "/server/ping",
+        "httpPort": 8000,
+        "configurePath": "/admin/",
+        "addons": {
+          "localstorage": {},
+          "postgresql": {},
+          "redis": {
+            "persistent": false
+          },
+          "oidc": {
+            "loginRedirectUri": "/auth/login/cloudron/callback"
+          },
+          "sendmail": {
+            "supportsDisplayName": false
+          }
+        },
+        "runtimeDirs": [
+          "/home/cloudron/.npm"
+        ],
+        "checklist": {
+          "change-default-password": {
+            "message": "Change the default Directus admin password (admin@example.com / changeme)"
+          },
+          "apply-schema": {
+            "message": "Apply Rotem invoice schema (Bundle/Sync or compare-prod) after first Directus login"
+          },
+          "laravel-optional": {
+            "message": "Laravel compat API is at /api — switch provider on the login screen if needed"
+          }
+        },
+        "optionalSso": true,
+        "manifestVersion": 2,
+        "memoryLimit": 1610612736,
+        "website": "https://rotem-projects.co.il",
+        "contactEmail": "rotem-project@maxd.pro",
+        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
+        "tags": [
+          "directus",
+          "laravel",
+          "vue",
+          "invoices",
+          "cms",
+          "spa"
+        ],
+        "mediaLinks": [
+          "https://mambo-heading-documentary-database.trycloudflare.com/cloudron/logo.png"
+        ],
+        "postInstallMessage": "## First login\n\n1. Open the app URL — **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio → `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then restart.",
+        "minBoxVersion": "10.0.0",
+        "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.6",
+        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/logo.png",
+        "packagerName": "Rotem Projects",
+        "packagerUrl": "https://rotem-projects.co.il",
+        "packageUrl": "https://mambo-heading-documentary-database.trycloudflare.com/CloudronVersions.json"
+      },
+      "creationDate": "2026-10-06T10:18:27.000Z",
+      "ts": "2026-10-06T10:18:27.000Z",
       "publishState": "published",
       "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.6"
     }
