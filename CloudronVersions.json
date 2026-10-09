@@ -918,6 +918,77 @@
       "publishState": "published",
       "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.17",
       "digest": "sha256:df327a40125e6c0b89b0ba76522c019ffedec84311de2d6dee79ce0a94b81237"
+    },
+    "0.2.18": {
+      "manifest": {
+        "id": "co.rotem-projects.full",
+        "title": "Rotem Projects Full",
+        "author": "Rotem Projects",
+        "description": "# Rotem Projects Full\n\nHebrew/RTL Vue 3 admin console **plus** Directus **11.17.4** **plus** a Laravel Directus-compatible API in one Cloudron app.\n\n- **Admin UI** (SPA) at `/` — Directus URL locked to this origin; optional Laravel provider uses `/api`.\n- **Directus Studio** at `/admin/`.\n- **Directus API** on the same host (`/auth`, `/items`, `/assets`, …).\n- **Laravel API** at `/api/*` (schema `laravel` in the same PostgreSQL database).\n- PostgreSQL + Redis + mail + optional Cloudron SSO.\n- Invoice-related Directus extensions are bundled.\n\nPinned Directus version: **11.17.4** (matches production).\n",
+        "changelog": "## 0.2.18\n\n- AI intake accuracy (#249): Tesseract `--psm 6` for scans; text-based repairs of document number,\n  VAT and date from the document text; supplier name normalised by a known ח.פ (vendor directory);\n  SSE streaming of model responses with keep-alive; AI timeout default 150 s (max 170 s via `INVOICE_AI_TIMEOUT_MS`) (no more tunnel cut-offs).\n  Pilot OCR test: 19/30 → 29–30/30 fields; earlier 14-invoice set 83% → 93–98%.\n- Laravel (#250): email AI intake without a project no longer fails with 500 (checkpoint\n  `invoice_intake_documents.project_id` made nullable, migration); PDF backfill no longer crashes on\n  PostgreSQL (UUID column compared to an empty string). Fixes the 10 failing `InvoiceAiParityTest` tests.\n- Laravel (#251): server-side duplicate invoice detection — indexed duplicate keys (migration +\n  `invoices:rebuild-duplicate-keys`), grouped query at `GET /api/invoice-duplicates`; match by\n  ח.פ + document number, supplier name + number, or identical link (amount ignored). The SPA uses\n  it in laravel mode instead of paging all invoices in the browser and shows which invoice each\n  duplicate matches.",
+        "tagline": "Vue SPA + Directus 11.17.4 + Laravel API",
+        "version": "0.2.18",
+        "upstreamVersion": "11.17.4",
+        "healthCheckPath": "/server/ping",
+        "httpPort": 8000,
+        "configurePath": "/admin/",
+        "addons": {
+          "localstorage": {},
+          "postgresql": {},
+          "redis": {
+            "persistent": false
+          },
+          "oidc": {
+            "loginRedirectUri": "/auth/login/cloudron/callback"
+          },
+          "sendmail": {
+            "supportsDisplayName": false
+          }
+        },
+        "runtimeDirs": [
+          "/home/cloudron/.npm"
+        ],
+        "checklist": {
+          "change-default-password": {
+            "message": "Change the default Directus admin password (admin@example.com / changeme)"
+          },
+          "apply-schema": {
+            "message": "Apply Rotem invoice schema (Bundle/Sync or compare-prod) after first Directus login"
+          },
+          "laravel-optional": {
+            "message": "Laravel compat API is at /api — switch provider on the login screen if needed"
+          }
+        },
+        "optionalSso": true,
+        "manifestVersion": 2,
+        "memoryLimit": 1073741824,
+        "website": "https://rotem-projects.co.il",
+        "contactEmail": "rotem-project@maxd.pro",
+        "icon": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png",
+        "tags": [
+          "directus",
+          "laravel",
+          "vue",
+          "invoices",
+          "cms",
+          "spa"
+        ],
+        "mediaLinks": [
+          "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png"
+        ],
+        "postInstallMessage": "## First login\n\n1. Open the app URL — **Rotem Vue admin** (Directus base URL is this origin).\n2. Default Directus admin (first boot only):\n   - Email: `admin@example.com`\n   - Password: `changeme`\n3. Change that password in Directus Studio → `/admin/`.\n4. Optional: on the login screen choose **Laravel** to use the compat API at `/api` (separate DB schema; seed via `cloudron exec` if needed).\n\n## Schema & data\n\nDirectus boots empty (bootstrap only). Apply Rotem schema via Vue **Bundle / Sync** or repo scripts against this instance.\n\nLaravel runs migrations on start into PostgreSQL schema `laravel`. Demo seed is optional (`php artisan db:seed` needs faker / `--with-dev` image or a custom seeder).\n\n## Operator env\n\nEdit `/app/data/env.sh` (Directus) and `/app/data/laravel.env` (Laravel extras), then **restart the app** so `config:cache` rebuilds and supervised workers reload.\n\nAll invoice channels below are **Laravel-only**. Directus does not receive WhatsApp / Telegram / email natively. Prefer the **Laravel** backend in the SPA for status cards.\n\nConfigure Laravel AI (`OPENAI_*` / `INVOICE_AI_*`) before enabling any channel — workers download media then run AI extract. When the local LLM is down, jobs stay queued (health pause + re-dispatch); see `INVOICE_AI_QUEUE_*`.\n\n### WhatsApp (Meta Cloud API)\n\n1. In `/app/data/laravel.env`:\n\n```env\nWHATSAPP_INVOICES_ENABLED=false\nWHATSAPP_APP_SECRET=\nWHATSAPP_VERIFY_TOKEN=\nWHATSAPP_ACCESS_TOKEN=\nWHATSAPP_PHONE_NUMBER_ID=\nWHATSAPP_ALLOWED_SENDERS=\nWHATSAPP_PROJECT_ID=\nWHATSAPP_GRAPH_VERSION=v21.0\n```\n\n2. Callback: `https://YOUR_APP_DOMAIN/api/invoice-whatsapp/webhook`  \n   Stage: `https://adi-real-stage.maxd.pro/api/invoice-whatsapp/webhook`\n3. Enable only after Meta verify, allowlist, project id, AI, and `laravel-whatsapp-worker` are ready.\n\n### Email (webhook and/or IMAP)\n\nNo Meta tokens. Prefer a forwarder (Mailgun/n8n) → JSON webhook; optional IMAP poll when `php-imap` mailbox is configured.\n\n```env\nEMAIL_INVOICES_ENABLED=false\nEMAIL_INVOICES_WEBHOOK_SECRET=          # ≥16 chars; Bearer or X-Email-Ingest-Secret\nEMAIL_INVOICES_ALLOWED_SENDERS=         # emails and/or *@domain.com\nEMAIL_INVOICES_PROJECT_ID=\n# Optional IMAP:\n# EMAIL_INVOICES_IMAP_HOST=\n# EMAIL_INVOICES_IMAP_PORT=993\n# EMAIL_INVOICES_IMAP_USERNAME=\n# EMAIL_INVOICES_IMAP_PASSWORD=\n# EMAIL_INVOICES_IMAP_MAILBOX=INBOX\n```\n\nInbound URL: `https://YOUR_APP_DOMAIN/api/invoice-email/inbound`  \nWorker: `laravel-email-worker`. IMAP: scheduled `invoices:poll-email` every 5 minutes when host is set (also runnable manually).\n\n### Telegram Bot API\n\n```env\nTELEGRAM_INVOICES_ENABLED=false\nTELEGRAM_BOT_TOKEN=\nTELEGRAM_ALLOWED_CHAT_IDS=              # numeric chat ids, comma-separated\nTELEGRAM_PROJECT_ID=\nTELEGRAM_INVOICES_MODE=long_poll        # or webhook\n# TELEGRAM_WEBHOOK_SECRET=              # required for webhook mode (≥16)\n```\n\nWebhook (if mode=webhook): `https://YOUR_APP_DOMAIN/api/invoice-telegram/webhook`  \nLong-poll program: `laravel-telegram-poll`. Queue worker: `laravel-telegram-worker`.\n\n### LLM queue (offline Mac / tunnel)\n\n```env\nINVOICE_AI_QUEUE_ENABLED=true\nOPENAI_BASE_URL=https://…/v1\nOPENAI_API_KEY=\nINVOICE_AI_MODEL=\n# INVOICE_AI_JSON_MODE=false\n# INVOICE_AI_PDF_MODE=text\n# INVOICE_AI_OCR=1\n# INVOICE_AI_TIMEOUT_MS=150000   # max 170000; local 70B models need 60-150 s\n# INVOICE_AI_STREAM=            # '' = SSE streaming except api.openai.com (keeps tunnels open)\n# INVOICE_AI_VISION=   # leave empty for text models; set 1 only for a vision model\n```\n\nWorker: `laravel-invoice-ai-worker` (ledger `invoice_ai_jobs`). Admin status: `GET /api/invoice-ai/queue-status`.\n\nRestart the Cloudron app after env edits.\n\n\n## SPA backend mode (optional)\n\nCreate `/app/data/spa.env` (no secrets) to control the Vue login provider chips:\n\n```\nSPA_BACKEND_MODE=laravel\n```\n\nValues: `both` (default — Directus + Laravel chips), `laravel` (Laravel only), `directus` (Directus only).\nRestart the app after changing. Does **not** disable Directus Studio at `/admin`.\n\n\n## Memory (1 GiB apps)\n\nPackage `memoryLimit` is 1 GiB. Defaults are tuned for that: few PHP-FPM children, capped Directus heap, lean queue workers.\nIf intake queues back up under load, raise the Cloudron memory slider (above 1 GiB requires a higher `memoryLimit` in a future package) or disable unused intake channels in `laravel.env`.\n",
+        "minBoxVersion": "10.0.0",
+        "iconUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/2fa2b1637c3c1217c3d3638825fb4ffff01430db/logo.png",
+        "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.18",
+        "packagerName": "Rotem Projects",
+        "packagerUrl": "https://rotem-projects.co.il",
+        "packageUrl": "https://raw.githubusercontent.com/maxfullstackcom/rotem-cloudron-catalog/main/CloudronVersions.json"
+      },
+      "creationDate": "2026-10-09T14:52:30.000Z",
+      "ts": "2026-10-09T14:52:30.000Z",
+      "publishState": "published",
+      "dockerImage": "ghcr.io/maxfullstackcom/rotem-full:0.2.18",
+      "digest": "sha256:98fa8bf1d712075c322d4fd38a73acd45fffd0218b6a168829eae0859aebd28b"
     }
   }
 }
